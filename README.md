@@ -2,7 +2,7 @@
 
 #### A program that allows users to play against each other or against a computer AI in a decisive TIC-TAC-TOE game. 4/4/18
 
-#### By **Justin Roller, CJ Rhone and Alex Noble**
+#### By **Justin Roller, CJ Rhone**
 
 ## Description
 

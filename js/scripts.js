@@ -1,67 +1,30 @@
+var player1Turn = "X"
+var grid = ["1","2","3","4","5","6","7","8","9",]
+var gameOn = false;
+
 $(document).ready(function() {
+  const grid = [
+    [' ', ' ', ' ',],
+    [' ', ' ', ' ',],
+    [' ', ' ', ' ',]
+  ];
 
-$(".one").click(function(event) {
-  event.preventDefault();
+$(".col").click(function() {
+  $(this).html(player1Turn);
 
-alert("You pressed 1!");
-
-});
-
-$(".two").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 2!");
-
-});
-
-$(".three").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 3!");
-
-});
-
-$(".four").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 4!");
+function winGameOver(gameArray){
+  const winConditions = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+    [1,4,7],
+    [1,5,9],
+    [3,5,7],
+    [2,5,8],
+    [3,6,9]
+  ];
+};
 
 });
-
-$(".five").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 5!");
-
-});
-
-$(".six").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 6!");
-
-});
-
-$(".seven").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 7!");
-
-});
-
-$(".eight").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 8!");
-
-});
-
-$(".nine").click(function(event) {
-  event.preventDefault();
-
-alert("You pressed 9!");
-
-});
-
 
 });
