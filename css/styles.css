@@ -1,0 +1,49 @@
+body {
+  text-align: center;
+}
+
+.container {
+  margin: 50px auto 50px auto;
+  height: 500px;
+  width: 800px;
+  
+}
+
+.one {
+  background-color: red;
+  height: 200px;
+}
+
+.two {
+  background-color: blue;
+}
+
+.three {
+  background-color: green;
+}
+
+.four {
+  background-color: yellow;
+  height: 200px;
+}
+
+.five {
+  background-color: purple;
+}
+
+.six {
+  background-color: orange;
+}
+
+.seven {
+  background-color: grey;
+  height: 200px;
+}
+
+.eight {
+  background-color: lavender;
+}
+
+.nine {
+  background-color: pink;
+}
