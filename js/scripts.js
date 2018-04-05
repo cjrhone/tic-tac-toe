@@ -1,88 +1,137 @@
-// const player1Turn = "X"
-// var grid = ["1","2","3","4","5","6","7","8","9",]
-// var gameOn = false;
-//
-// $(document).ready(function() {
-//   const grid = [
-//     [' ', ' ', ' ',],
-//     [' ', ' ', ' ',],
-//     [' ', ' ', ' ',]
-//   ];
-//
-//
-// $(".col").click(function() {
-//   $(this).html(player1Turn);
-//
-//
-// function winGameOver(gameArray){
-//   const winConditions = [
-//     [1,2,3],
-//     [4,5,6],
-//     [7,8,9],
-//     [1,4,7],
-//     [1,5,9],
-//     [3,5,7],
-//     [2,5,8],
-//     [3,6,9]
-//   ];
-// };
-//
-// });
-//
-// });
+//BUSINESS LOGIC
 
-// EARLIER CODE
+var player1=new Player("CJ", "X");
+var player2=new Player("Justin", "O");
+var turnKeeper=1;
 
-function playerTurn(turn, id) {
-  var spotTaken = $("#" + id).text();
-  if (spotTaken === "#") {
-    grid[id] = turn;
-    $("#" + id).text(turn);
+
+var spaces=[];
+
+function setSpaces(){
+  for (i=0; i<=8; i++){
+    spaces[i]=new Space("No","");
   }
-};
-
-function x(space) {
-  space = [];
 }
 
-function y(space) {
-  space=[];
+//Define Player Object
+function Player (name, symbol){
+  this.name=name;
+  this.symbol= symbol;
+}
+//Define Space Object
+function Space (marked, symbol){
+  this.marked=marked;
+  this.symbol=symbol;
 }
 
-function winGameOver(gameArray){
-  const winConditions = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9],
-    [1,4,7],
-    [1,5,9],
-    [3,5,7],
-    [2,5,8],
-    [3,6,9]
-  ];
-};
+function restart() {
+  var spaces=[];
+  var player1=new Player("CJ", "X");
+  var player2=new Player("Justin", "O");
+  var turnKeeper=1;
+}
+//Define checkWin function
+function checkWin(){
 
-var grid = ["1","2","3","4","5","6","7","8","9",]
+  //tie game checker
+  var markedSpaces=0;
+  spaces.forEach(function(space){
+    if (Space.marked==="Yes"){
+      markedSpaces++;
+    } else{}
+  });
 
-var turn = "X"
 
 
+
+  //Win Conditions
+  if (spaces[0].symbol==="X"&&spaces[1].symbol==="X"&&spaces[2].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[0].symbol==="O"&&spaces[1].symbol==="O"&&spaces[2].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[3].symbol==="X"&&spaces[4].symbol==="X"&&spaces[5].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[3].symbol==="O"&&spaces[4].symbol==="O"&&spaces[5].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[6].symbol==="X"&&spaces[7].symbol==="X"&&spaces[8].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[6].symbol==="O"&&spaces[7].symbol==="O"&&spaces[8].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[0].symbol==="X"&&spaces[3].symbol==="X"&&spaces[6].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[0].symbol==="O"&&spaces[3].symbol==="O"&&spaces[6].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[1].symbol==="X"&&spaces[4].symbol==="X"&&spaces[7].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[1].symbol==="O"&&spaces[4].symbol==="O"&&spaces[7].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[2].symbol==="X"&&spaces[5].symbol==="X"&&spaces[8].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[2].symbol==="O"&&spaces[5].symbol==="O"&&spaces[8].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[0].symbol==="X"&&spaces[4].symbol==="X"&&spaces[8].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[0].symbol==="O"&&spaces[4].symbol==="O"&&spaces[8].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  }
+  else if (spaces[6].symbol==="X"&&spaces[4].symbol==="X"&&spaces[2].symbol==="X"){
+    $("#winHeader").append("Player 1 wins");
+  }
+  else if (spaces[6].symbol==="O"&&spaces[4].symbol==="O"&&spaces[2].symbol==="O"){
+    $("#winHeader").append("Player 2 wins");
+  } else if (markedSpaces===9){
+    $("#winHeader").append("Tie Game!");
+  } else{}
+}
+
+
+//USER INTERFACE LOGIC
 $(document).ready(function() {
-   $(".col").click(function() {
-     $(this).html(turn);
-
-  var slot = $(this).attr('id');
-
-  if ( slot === "one" ) {
-    alert ("You clicked one");
-  } else {
-    alert ("THATS NOT ONE!");
-  }
-
-  console.log(slot)
+  setSpaces();
 
 
+  $(".cell").click(function(){
+    cellId=$(this).attr("id");
+    console.log(cellId);
+    if (spaces[cellId].marked==="No"){
+      if (turnKeeper%2===0){
+        $(this).append(player2.symbol);
+        spaces[cellId].marked="Yes";
+        spaces[cellId].symbol=player2.symbol;
+        turnKeeper++;
+        checkWin();
+        //console.log(spaces[0].symbol);
+      } else {
+
+        $(this).append(player1.symbol);
+        turnKeeper++;
+        spaces[cellId].marked="Yes";
+        spaces[cellId].symbol=player1.symbol;
+        checkWin();
+      }
+    }
+    else {}
+
+
+
+  });
+$(".restart").click(function(){
+location.reload();
 
 
 });
+
 });
